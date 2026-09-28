@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>霍華德餐館</title>
+<meta name="description" content="挑好菜按送出，主廚馬上收到。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3FAF6;--card:#FFFFFF;--ink:#3B2F3A;--muted:#8A7C88;--pri:#FF6B8B;--pri-ink:#FFFFFF;--pri-soft:#FFE3EA;--yolk:#FFD166;--line:#E3EFE8;--shadow:0 6px 18px rgba(59,47,58,.08);--shade:rgba(40,30,40,.42);
+--t-cold:#DFF5EC;--t-veg:#E8F6D8;--t-meat:#FFE3DA;--t-soup:#FFF1CC;--line-green:#06C755;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1E1A22;--card:#2A2530;--ink:#F6EEF3;--muted:#B7A9B4;--pri:#FF8AA3;--pri-ink:#2A1520;--pri-soft:#4A2A35;--yolk:#F5C75A;--line:#3A3340;--shadow:0 6px 18px rgba(0,0,0,.3);--shade:rgba(0,0,0,.6);--t-cold:#20392F;--t-veg:#2A3822;--t-meat:#3E2A26;--t-soup:#3D3420}}
+:root[data-theme="dark"]{--bg:#1E1A22;--card:#2A2530;--ink:#F6EEF3;--muted:#B7A9B4;--pri:#FF8AA3;--pri-ink:#2A1520;--pri-soft:#4A2A35;--yolk:#F5C75A;--line:#3A3340;--shadow:0 6px 18px rgba(0,0,0,.3);--shade:rgba(0,0,0,.6);--t-cold:#20392F;--t-veg:#2A3822;--t-meat:#3E2A26;--t-soup:#3D3420}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Chiron GoRound TC","Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:16px;line-height:1.55}
+img{max-width:100%;display:block}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-user-select:none;user-select:none}
+:focus-visible{outline:3px solid var(--yolk);outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+.t-cold{background:var(--t-cold)}.t-veg{background:var(--t-veg)}.t-meat{background:var(--t-meat)}.t-soup{background:var(--t-soup)}
+.top{padding:26px 0 18px}
+.top-in{display:flex;align-items:center;gap:14px}
+.logo{flex:none;width:76px;height:76px;border-radius:50%;border:0;padding:6px;background:var(--pri-soft)}
+.logo svg{width:100%;height:100%}
+.logo.wob{animation:wob .35s ease}
+@keyframes wob{30%{transform:rotate(-8deg) scale(.96)}70%{transform:rotate(6deg)}}
+.top h1{margin:0;font-weight:800;font-size:clamp(30px,7.5vw,44px);line-height:1.15;letter-spacing:.04em}
+.top p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:8px 0 10px}
+.tabs-in{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tab{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:var(--ink);background:var(--card);border-radius:18px;padding:8px 4px;font-weight:600;font-size:14px;box-shadow:var(--shadow);border:2px solid transparent;transition:border-color .15s,background .15s}
+.tab span{font-size:22px;line-height:1.2}
+.tab.on{border-color:var(--pri);background:var(--pri-soft)}
+.sec{padding:22px 0 6px;scroll-margin-top:calc(env(safe-area-inset-top,0px) + 86px)}
+.sec-h{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.badge{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;font-size:22px}
+.sec-h h2{margin:0;font-size:22px;font-weight:800}
+.cnt{margin-left:auto;color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
+@media (min-width:700px){.grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}}
+.card{background:var(--card);border-radius:22px;padding:8px;box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative}
+.card.off{opacity:.6}
+.pic{aspect-ratio:1/1;border-radius:16px;overflow:hidden;display:grid;place-items:center;position:relative}
+.pic img{width:100%;height:100%;object-fit:cover}
+.pic .emo{font-size:52px}
+.flag{position:absolute;left:8px;top:8px;background:var(--ink);color:var(--bg);font-size:12px;border-radius:999px;padding:2px 10px}
+.info{padding:10px 6px 4px;flex:1}
+.info h3{margin:0;font-size:17px;font-weight:800;line-height:1.3}
+.info p{margin:3px 0 0;color:var(--muted);font-size:13px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ctl{padding:6px 4px 4px;display:flex;justify-content:flex-end;min-height:48px;align-items:center}
+.plus{width:40px;height:40px;border-radius:50%;border:0;background:var(--pri);color:var(--pri-ink);font-size:26px;font-weight:700;line-height:1;display:grid;place-items:center}
+.stepper{display:flex;align-items:center;background:var(--pri);color:var(--pri-ink);border-radius:999px;height:40px}
+.stepper button{border:0;background:transparent;color:inherit;width:38px;height:40px;font-size:22px;font-weight:700}
+.stepper b{min-width:20px;text-align:center}
+.editbtn{border:0;border-radius:999px;background:var(--pri-soft);color:var(--ink);padding:8px 16px;font-weight:700;width:100%}
+.addcard{border:2.5px dashed var(--line);background:transparent;border-radius:22px;min-height:180px;color:var(--muted);font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.addcard span{font-size:34px;line-height:1}
+.empty{grid-column:1/-1;background:var(--card);border-radius:18px;padding:22px;text-align:center;color:var(--muted)}
+.loading{text-align:center;color:var(--muted);padding:60px 0}
+.foot{text-align:center;color:var(--muted);font-size:13px;padding:34px 0 130px}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:6;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));pointer-events:none}
+.bar-in{max-width:560px;margin:0 auto;pointer-events:auto;display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);border-radius:999px;padding:8px 8px 8px 20px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.bar-in .sum{margin-right:auto;font-weight:600}
+.bar-in .go{border:0;background:var(--pri);color:var(--pri-ink);border-radius:999px;padding:11px 20px;font-weight:800}
+.bar-in .go:disabled{opacity:.5}
+.bar-in .sm{border:0;background:transparent;color:inherit;padding:10px 12px;font-weight:600}
+.bar.bump .bar-in{animation:bump .3s ease}
+@keyframes bump{40%{transform:scale(1.04)}}
+.bar.editing .bar-in{background:var(--yolk);color:#3B2F3A}
+.bar.editing .dot{width:8px;height:8px;border-radius:50%;background:var(--pri);display:inline-block;margin-left:6px;vertical-align:middle}
+.modal{position:fixed;inset:0;z-index:10;background:var(--shade);display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--bg);width:100%;max-width:540px;max-height:92vh;overflow:auto;border-radius:28px 28px 0 0;padding:10px 20px calc(24px + env(safe-area-inset-bottom,0px))}
+.grab{width:44px;height:5px;border-radius:9px;background:var(--line);margin:4px auto 14px}
+@media (min-width:640px){.modal{align-items:center}.sheet{border-radius:28px;padding-top:24px}.grab{display:none}}
+.sheet h2{margin:0 0 14px;font-size:24px;font-weight:800}
+.sheet .hint{color:var(--muted);font-size:14px;margin:-6px 0 16px}
+.sheet ol{margin:0 0 16px;padding-left:22px;font-size:14px}
+.sheet ol li{margin-bottom:4px}
+.sheet a{color:var(--pri)}
+.olist{list-style:none;margin:0 0 18px;padding:0;background:var(--card);border-radius:18px}
+.olist li{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-bottom:1px solid var(--line)}
+.olist li:last-child{border-bottom:0}
+.olist .nm{margin-right:auto;font-weight:600}
+.olist .stepper{height:36px}.olist .stepper button{height:36px;width:34px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field>label,.lbl{font-weight:700;font-size:14px}
+.field input,.field textarea{border:2px solid var(--line);background:var(--card);border-radius:14px;padding:11px 14px;outline:none}
+.field input:focus,.field textarea:focus{border-color:var(--pri)}
+.field textarea{min-height:76px;resize:vertical}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{border:2px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;font-weight:600;font-size:14px}
+.pill.on{border-color:var(--pri);background:var(--pri-soft)}
+.sends{display:grid;gap:10px;margin-top:6px}
+.send{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border:0;border-radius:16px;padding:14px;font-weight:800;font-size:16px}
+.send:disabled{opacity:.6}
+.send.line{background:var(--line-green);color:#fff}
+.send.mail{background:var(--pri);color:var(--pri-ink)}
+.send.copy{background:var(--card);color:var(--ink);border:2px solid var(--line)}
+.or{text-align:center;color:var(--muted);font-size:13px;margin:4px 0 -2px}
+.ghost{border:0;background:none;color:var(--muted);font-weight:600;padding:12px;width:100%}
+.done{text-align:center;padding:10px 0 4px}
+.done .logo{width:110px;height:110px;margin:0 auto 10px;display:block}
+.done h2{margin-bottom:6px}
+.done p{color:var(--muted);margin:0 0 20px}
+.upl{display:block;aspect-ratio:4/3;border-radius:20px;overflow:hidden;cursor:pointer;position:relative;margin-bottom:8px}
+.upl img{width:100%;height:100%;object-fit:cover}
+.upl .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--ink);font-weight:700}
+.upl .ph span{font-size:44px}
+.upl .chg{position:absolute;right:10px;bottom:10px;background:var(--card);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700}
+.upl input{position:absolute;width:1px;height:1px;opacity:0}
+.linkbtn{border:0;background:none;color:var(--muted);text-decoration:underline;font-size:14px;padding:0 0 14px}
+.toggle{display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:14px;padding:12px 14px;margin-bottom:18px;font-weight:600}
+.toggle input{width:22px;height:22px;accent-color:var(--pri)}
+.btns{display:flex;gap:10px}
+.btn{flex:1;border:0;border-radius:16px;padding:14px;font-weight:800;background:var(--pri);color:var(--pri-ink)}
+.btn.sub{background:var(--card);color:var(--ink);border:2px solid var(--line)}
+.btn:disabled{opacity:.5}
+.danger{border:0;background:none;color:#D9455F;font-weight:700;padding:14px 0 0;width:100%}
+.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;z-index:20;font-size:14px;font-weight:600;max-width:calc(100vw - 32px);text-align:center}
+@media (prefers-reduced-motion:no-preference){.sheet{animation:up .25s cubic-bezier(.2,.8,.3,1)}@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}}
+@media (prefers-reduced-motion:reduce){.logo.wob,.bar.bump .bar-in{animation:none}}
+</style>
+</head>
+<body>
+<div id="app"><p class="loading">菜單載入中…</p></div>
+<script>
+(function(){
+/* ---- 網站設定：通常不用改，會自動從 GitHub Pages 網址判斷 ---- */
+var REPO={owner:'',repo:'',branch:''};
+(function(){
+  var m=location.hostname.match(/^([^.]+)\.github\.io$/i);
+  if(m){REPO.owner=m[1];var seg=location.pathname.split('/').filter(Boolean)[0];REPO.repo=(seg&&seg.indexOf('.')<0)?seg:m[1]+'.github.io'}
+})();
+var MENU_PATH='menu.json',TOKEN_KEY='hdGithubToken';
+
+var SECS=[{id:'cold',name:'涼拌區',short:'涼拌',emo:'🥒'},{id:'veg',name:'蔬菜區',short:'蔬菜',emo:'🥬'},{id:'meat',name:'肉類區',short:'肉類',emo:'🍖'},{id:'soup',name:'湯品區',short:'湯品',emo:'🍲'}];
+var WHEN=['今天午餐','今天晚餐','明天'];
+var state=null,cart={},edit=false,dirty=false,sheet=null,taps=0,tapTimer=null,obs=null,sending=false,saving=false;
+var form={who:'',when:'',note:''};
+try{var sv=JSON.parse(sessionStorage.getItem('hdForm')||'null');if(sv)form=sv}catch(e){}
+var app=document.getElementById('app');
+var MASCOT='<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="41" r="17" fill="var(--yolk)" stroke="#3B2F3A" stroke-width="2.5"/><path d="M19 25c-7 0-9-9-2-12 2-7 11-8 15-3 4-5 13-4 15 3 7 3 5 12-2 12z" fill="#fff" stroke="#3B2F3A" stroke-width="2.5" stroke-linejoin="round"/><rect x="20" y="21" width="24" height="8" rx="3" fill="#fff" stroke="#3B2F3A" stroke-width="2.5"/><circle cx="26" cy="41" r="2.2" fill="#3B2F3A"/><circle cx="38" cy="41" r="2.2" fill="#3B2F3A"/><ellipse cx="21.5" cy="46" rx="3" ry="2" fill="#FF6B8B" opacity=".55"/><ellipse cx="42.5" cy="46" rx="3" ry="2" fill="#FF6B8B" opacity=".55"/><path d="M28.5 46.5q3.5 3.5 7 0" fill="none" stroke="#3B2F3A" stroke-width="2.2" stroke-linecap="round"/></svg>';
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function byId(id){for(var i=0;i<state.dishes.length;i++)if(state.dishes[i].id===id)return state.dishes[i]}
+function sec(id){for(var i=0;i<SECS.length;i++)if(SECS[i].id===id)return SECS[i];return SECS[0]}
+function count(){var n=0;for(var k in cart)n+=cart[k];return n}
+function toast(t,ms){var o=document.querySelector('.toast');if(o)o.remove();var el=document.createElement('div');el.className='toast';el.textContent=t;document.body.appendChild(el);setTimeout(function(){el.remove()},ms||2600)}
+function saveForm(){try{sessionStorage.setItem('hdForm',JSON.stringify(form))}catch(e){}}
+function getToken(){try{return localStorage.getItem(TOKEN_KEY)||''}catch(e){return ''}}
+function setToken(t){try{if(t)localStorage.setItem(TOKEN_KEY,t);else localStorage.removeItem(TOKEN_KEY)}catch(e){}}
+
+/* ---------- 畫面 ---------- */
+function ctl(d){
+  if(edit)return '<button class="editbtn" data-act="edit" data-id="'+d.id+'">✏️ 編輯</button>';
+  var q=cart[d.id]||0;
+  if(q)return '<div class="stepper"><button data-act="minus" data-id="'+d.id+'" aria-label="'+esc(d.name)+'少一份">−</button><b>'+q+'</b><button data-act="plus" data-id="'+d.id+'" aria-label="'+esc(d.name)+'多一份">+</button></div>';
+  return '<button class="plus" data-act="plus" data-id="'+d.id+'" aria-label="點'+esc(d.name)+'">+</button>';
+}
+function card(d){
+  var s=sec(d.sec);
+  return '<article class="card'+(d.off?' off':'')+'"><div class="pic t-'+s.id+'">'+(d.img?'<img src="'+esc(d.img)+'" alt="'+esc(d.name)+'" loading="lazy">':'<span class="emo" aria-hidden="true">'+s.emo+'</span>')+(d.off?'<span class="flag">暫停供應</span>':'')+'</div><div class="info"><h3>'+esc(d.name)+'</h3>'+(d.desc?'<p>'+esc(d.desc)+'</p>':'')+'</div><div class="ctl" id="ctl-'+d.id+'">'+ctl(d)+'</div></article>';
+}
+function render(){
+  var y=window.scrollY,h='';
+  document.title=state.title;
+  h+='<header class="top"><div class="wrap top-in"><button class="logo" id="logo" aria-label="'+esc(state.title)+'">'+MASCOT+'</button><div><h1>'+esc(state.title)+'</h1><p>'+esc(state.tagline)+'</p></div></div></header>';
+  h+='<nav class="tabs" aria-label="分區"><div class="wrap tabs-in">';
+  SECS.forEach(function(s,i){h+='<a class="tab'+(i===0?' on':'')+'" href="#sec-'+s.id+'" data-act="tab" data-s="'+s.id+'"><span aria-hidden="true">'+s.emo+'</span>'+s.short+'</a>'});
+  h+='</div></nav><main class="wrap">';
+  SECS.forEach(function(s){
+    var list=state.dishes.filter(function(d){return d.sec===s.id&&(edit||!d.off)});
+    h+='<section class="sec" id="sec-'+s.id+'" data-s="'+s.id+'"><div class="sec-h"><span class="badge t-'+s.id+'" aria-hidden="true">'+s.emo+'</span><h2>'+s.name+'</h2><span class="cnt">'+list.length+' 道</span></div><div class="grid">';
+    list.forEach(function(d){h+=card(d)});
+    if(edit)h+='<button class="addcard" data-act="new" data-s="'+s.id+'"><span>+</span>新增到'+s.name+'</button>';
+    else if(!list.length)h+='<div class="empty">這區還在研發新菜，敬請期待</div>';
+    h+='</div></section>';
+  });
+  h+='</main><footer class="foot">'+esc(state.title)+'，家常手作，每一道都用心</footer><div class="bar" id="bar"></div>';
+  app.innerHTML=h;
+  window.scrollTo(0,y);
+  updateBar();spy();
+}
+function updateBar(bump){
+  var b=document.getElementById('bar');if(!b)return;
+  if(edit){b.className='bar editing';b.hidden=false;b.innerHTML='<div class="bar-in"><span class="sum">編輯模式'+(dirty?'<i class="dot" title="有修改還沒儲存"></i>':'')+'</span><button class="sm" data-act="settings">設定</button><button class="sm" data-act="exit">離開</button><button class="go" data-act="save"'+(dirty&&!saving?'':' disabled')+'>'+(saving?'儲存中…':'儲存')+'</button></div>';return}
+  var n=count();b.className='bar'+(bump?' bump':'');b.hidden=!n;
+  if(n)b.innerHTML='<div class="bar-in"><span class="sum">已選 '+n+' 份</span><button class="go" data-act="order">送出點餐</button></div>';
+}
+function updateCard(id){var d=byId(id),el=document.getElementById('ctl-'+id);if(d&&el)el.innerHTML=ctl(d)}
+function spy(){
+  if(obs)obs.disconnect();if(!('IntersectionObserver' in window))return;
+  obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var id=e.target.getAttribute('data-s');document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('on',t.getAttribute('data-s')===id)})}})},{rootMargin:'-35% 0px -60% 0px'});
+  document.querySelectorAll('.sec').forEach(function(s){obs.observe(s)});
+}
+
+/* ---------- 點餐 ---------- */
+function orderLines(){var out=[];SECS.forEach(function(s){state.dishes.forEach(function(d){if(d.sec===s.id&&cart[d.id])out.push(s.emo+' '+d.name+' × '+cart[d.id])})});return out}
+function orderText(){
+  var t='【'+state.title+' 點餐單】\n點餐人：'+(form.who||'（沒填名字）')+'\n';
+  if(form.when)t+='用餐時間：'+form.when+'\n';
+  t+='\n'+orderLines().join('\n')+'\n';
+  if(form.note)t+='\n備註：'+form.note+'\n';
+  return t;
+}
+function lineLink(){var l=document.getElementById('lk-line');if(l)l.href='https://line.me/R/share?text='+encodeURIComponent(orderText())}
+async function sendMail(){
+  if(sending)return;
+  if(!form.who.trim()){toast('請先填你的名字');var w=document.getElementById('f-who');if(w)w.focus();return}
+  sending=true;var b=document.querySelector('[data-act="mail"]');if(b){b.disabled=true;b.textContent='寄送中…'}
+  try{
+    var r=await fetch('https://formsubmit.co/ajax/'+encodeURIComponent(state.email),{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({_subject:state.title+' 點餐：'+form.who.trim(),_template:'box',_captcha:'false','點餐人':form.who.trim(),'用餐時間':form.when||'（沒填）','餐點':orderLines().join('\n'),'備註':form.note||'（無）'})});
+    var j=await r.json().catch(function(){return {}});
+    if(r.ok&&String(j.success)==='true'){openSheet({type:'done',mailed:true})}
+    else{toast('信沒寄出去，請改用 LINE 或複製內容',3500)}
+  }catch(e){toast('網路有問題，請改用 LINE 或複製內容',3500)}
+  sending=false;if(b&&document.body.contains(b)){b.disabled=false;b.textContent='✉️ 送出點餐（寄給主廚）'}
+}
+function step(d){var q=cart[d.id]||0;return '<div class="stepper"><button data-act="minus" data-id="'+d.id+'" aria-label="少一份">−</button><b>'+q+'</b><button data-act="plus" data-id="'+d.id+'" aria-label="多一份">+</button></div>'}
+
+/* ---------- 彈出視窗 ---------- */
+function renderSheet(){
+  var m=document.querySelector('.modal');
+  if(!sheet){if(m)m.remove();document.body.style.overflow='';return}
+  var h='<div class="grab"></div>';
+  if(sheet.type==='order'){
+    h+='<h2>確認點餐</h2><ul class="olist">';
+    SECS.forEach(function(s){state.dishes.forEach(function(d){if(d.sec===s.id&&cart[d.id])h+='<li><span aria-hidden="true">'+s.emo+'</span><span class="nm">'+esc(d.name)+'</span>'+step(d)+'</li>'})});
+    h+='</ul><div class="field"><label for="f-who">你的名字</label><input id="f-who" data-f="who" value="'+esc(form.who)+'" placeholder="讓主廚知道是誰點的" autocomplete="given-name"></div>';
+    h+='<div class="field"><span class="lbl">什麼時候吃</span><div class="pills">';
+    WHEN.forEach(function(w){h+='<button class="pill'+(form.when===w?' on':'')+'" data-act="when" data-v="'+w+'">'+w+'</button>'});
+    h+='</div><input data-f="when" aria-label="或自己填時間" value="'+(WHEN.indexOf(form.when)<0?esc(form.when):'')+'" placeholder="或自己填，例如：週六中午"></div>';
+    h+='<div class="field"><label for="f-note">想跟主廚說的話</label><textarea id="f-note" data-f="note" placeholder="不要辣、飯多一點、幾個人吃…">'+esc(form.note)+'</textarea></div>';
+    h+='<div class="sends">';
+    if(state.email)h+='<button class="send mail" data-act="mail">✉️ 送出點餐（寄給主廚）</button><p class="or">或</p>';
+    h+='<a class="send line" id="lk-line" data-act="sent" target="_blank" rel="noopener">💬 用 LINE 傳給主廚</a><button class="send copy" data-act="copy">📋 複製點餐內容</button></div><button class="ghost" data-act="close">再看看菜單</button>';
+  }else if(sheet.type==='done'){
+    h+='<div class="done"><span class="logo">'+MASCOT+'</span><h2>'+(sheet.mailed?'送出囉！':'點好囉！')+'</h2><p>'+(sheet.mailed?'主廚已經收到你的點餐，準備開工。':'記得在 LINE 裡按下送出，主廚收到就開始準備。')+'</p><button class="btn" data-act="again" style="width:100%">再點一次</button><button class="ghost" data-act="close">回到菜單</button></div>';
+  }else if(sheet.type==='login'){
+    h+='<h2>店主登入</h2><p class="hint">編輯要用你的 GitHub 金鑰，只會存在這台裝置上。</p>';
+    h+='<ol><li>打開 <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub 建立金鑰頁</a></li><li>Repository access 選 <b>Only select repositories</b>，選 <b>'+esc(REPO.repo||'你的網站 repo')+'</b></li><li>Permissions → Repository permissions → <b>Contents</b> 設成 <b>Read and write</b></li><li>按 Generate token，把金鑰貼到下面</li></ol>';
+    h+='<div class="field"><label for="tk">GitHub 金鑰</label><input id="tk" data-t="token" type="password" autocomplete="off" placeholder="github_pat_…" value="'+esc(sheet.token||'')+'"></div>';
+    h+='<div class="btns"><button class="btn sub" data-act="close">取消</button><button class="btn" data-act="login"'+(sheet.busy?' disabled':'')+'>'+(sheet.busy?'確認中…':'登入')+'</button></div>';
+  }else if(sheet.type==='edit'){
+    var d=sheet.d,s=sec(d.sec);
+    h+='<h2>'+(sheet.isNew?'新增菜色':'編輯菜色')+'</h2>';
+    h+='<label class="upl t-'+s.id+'" id="upl">'+(d.img?'<img src="'+esc(d.img)+'" alt=""><span class="chg">換照片</span>':'<span class="ph"><span aria-hidden="true">📷</span>點這裡上傳照片</span>')+'<input type="file" accept="image/*" id="e-img"></label>';
+    if(d.img)h+='<button class="linkbtn" data-act="rmimg">移除照片</button>';
+    h+='<div class="field"><label for="e-name">菜名</label><input id="e-name" data-e="name" value="'+esc(d.name)+'" placeholder="例如：糖醋排骨"></div>';
+    h+='<div class="field"><span class="lbl">放在哪一區</span><div class="pills">';
+    SECS.forEach(function(x){h+='<button class="pill'+(d.sec===x.id?' on':'')+'" data-act="pick" data-s="'+x.id+'">'+x.emo+' '+x.name+'</button>'});
+    h+='</div></div><div class="field"><label for="e-desc">一句話介紹（可不填）</label><input id="e-desc" data-e="desc" value="'+esc(d.desc)+'" placeholder="例如：外酥內嫩，酸甜剛好"></div>';
+    h+='<label class="toggle">暫停供應（客人看不到這道）<input type="checkbox" data-e="off"'+(d.off?' checked':'')+'></label>';
+    h+='<div class="btns"><button class="btn sub" data-act="close">取消</button><button class="btn" data-act="keep">完成</button></div>';
+    if(!sheet.isNew)h+='<button class="danger" data-act="del">刪除這道菜</button>';
+  }else if(sheet.type==='settings'){
+    var v=sheet.s;
+    h+='<h2>餐館設定</h2><div class="field"><label for="s-t">餐館名稱</label><input id="s-t" data-s="title" value="'+esc(v.title)+'"></div>';
+    h+='<div class="field"><label for="s-g">招呼語</label><input id="s-g" data-s="tagline" value="'+esc(v.tagline)+'"></div>';
+    h+='<div class="field"><label for="s-m">接收點餐的 Email（留空就只用 LINE）</label><input id="s-m" type="email" data-s="email" value="'+esc(v.email)+'"></div>';
+    h+='<div class="btns"><button class="btn sub" data-act="close">取消</button><button class="btn" data-act="keepset">完成</button></div>';
+    h+='<button class="danger" data-act="logout">登出這台裝置（清除 GitHub 金鑰）</button>';
+  }
+  if(!m){m=document.createElement('div');m.className='modal';m.setAttribute('data-act','bg');m.innerHTML='<div class="sheet" role="dialog" aria-modal="true"></div>';document.body.appendChild(m);document.body.style.overflow='hidden'}
+  m.firstChild.innerHTML=h;
+  if(sheet.type==='order')lineLink();
+}
+function openSheet(s){sheet=s;var m=document.querySelector('.modal');if(m)m.remove();renderSheet()}
+
+function readImage(file){return new Promise(function(res,rej){var fr=new FileReader();fr.onload=function(){var img=new Image();img.onload=function(){var max=900,w=img.naturalWidth,h=img.naturalHeight,k=Math.min(1,max/Math.max(w,h));w=Math.round(w*k);h=Math.round(h*k);var cv=document.createElement('canvas');cv.width=w;cv.height=h;cv.getContext('2d').drawImage(img,0,0,w,h);res(cv.toDataURL('image/jpeg',0.78))};img.onerror=rej;img.src=fr.result};fr.onerror=rej;fr.readAsDataURL(file)})}
+
+/* ---------- GitHub 儲存 ---------- */
+function gh(path,opt){
+  opt=opt||{};opt.headers=Object.assign({'Accept':'application/vnd.github+json','Authorization':'Bearer '+getToken(),'X-GitHub-Api-Version':'2022-11-28'},opt.headers||{});
+  return fetch('https://api.github.com'+path,opt).then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok){var e=new Error(j.message||('HTTP '+r.status));e.status=r.status;throw e}return j})});
+}
+function b64(str){return btoa(unescape(encodeURIComponent(str)))}
+async function ensureRepo(){
+  if(!REPO.owner||!REPO.repo)throw Object.assign(new Error('norepo'),{status:0});
+  var info=await gh('/repos/'+REPO.owner+'/'+REPO.repo);
+  if(!info.permissions||!info.permissions.push)throw Object.assign(new Error('noperm'),{status:403});
+  if(!REPO.branch)REPO.branch=info.default_branch;
+  return info;
+}
+async function putFile(path,contentB64,msg){
+  var sha;
+  try{var cur=await gh('/repos/'+REPO.owner+'/'+REPO.repo+'/contents/'+path+'?ref='+encodeURIComponent(REPO.branch));sha=cur.sha}catch(e){if(e.status!==404)throw e}
+  var body={message:msg,content:contentB64,branch:REPO.branch};if(sha)body.sha=sha;
+  return gh('/repos/'+REPO.owner+'/'+REPO.repo+'/contents/'+path,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+}
+async function save(){
+  if(saving)return;saving=true;updateBar();
+  try{
+    await ensureRepo();
+    for(var i=0;i<state.dishes.length;i++){
+      var d=state.dishes[i];
+      if(d.img&&d.img.indexOf('data:')===0){
+        var p='images/'+d.id+'-'+Date.now().toString(36)+'.jpg';
+        await putFile(p,d.img.split(',')[1],'上傳照片：'+d.name);
+        d.img=p;
+      }
+    }
+    await putFile(MENU_PATH,b64(JSON.stringify(state,null,2)+'\n'),'更新菜單');
+    dirty=false;saving=false;render();toast('已儲存！約 1 分鐘後朋友就會看到新菜單',3800);
+  }catch(e){
+    saving=false;updateBar();
+    if(e.status===401){setToken('');edit=false;render();toast('金鑰失效了，請重新登入',3500)}
+    else if(e.status===403||e.status===404)toast('這把金鑰沒有寫入權限，請檢查 Contents 權限',3800);
+    else if(e.status===409)toast('檔案剛被改過，請重新整理再試',3500);
+    else toast('儲存失敗，請再試一次',3000);
+  }
+}
+async function login(){
+  var t=(sheet.token||'').trim();if(!t){toast('請貼上金鑰');return}
+  setToken(t);sheet.busy=true;renderSheet();
+  try{await ensureRepo();sheet=null;renderSheet();enterEdit()}
+  catch(e){setToken('');sheet.busy=false;renderSheet();toast(e.message==='norepo'?'要在 GitHub Pages 網址上才能編輯':(e.status===401?'金鑰不正確':'這把金鑰沒有這個 repo 的寫入權限'),3800)}
+}
+function enterEdit(){edit=true;cart={};render();toast('進入編輯模式')}
+function tapLogo(el){
+  el.classList.remove('wob');void el.offsetWidth;el.classList.add('wob');
+  taps++;clearTimeout(tapTimer);tapTimer=setTimeout(function(){taps=0},1500);
+  if(taps<10)return;taps=0;
+  if(edit){toast('已經在編輯模式');return}
+  if(getToken())enterEdit();else openSheet({type:'login',token:''});
+}
+
+/* ---------- 事件 ---------- */
+document.addEventListener('click',function(ev){
+  if(!state)return;
+  var logo=ev.target.closest('#logo');if(logo&&!ev.target.closest('.modal')){tapLogo(logo);return}
+  var t=ev.target.closest('[data-act]');if(!t)return;
+  var a=t.getAttribute('data-act'),id=t.getAttribute('data-id');
+  if(a==='bg'){if(ev.target===t){sheet=null;renderSheet()}return}
+  if(a==='tab'){ev.preventDefault();var el=document.getElementById('sec-'+t.getAttribute('data-s'));if(el)el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});return}
+  if(a==='plus'){cart[id]=(cart[id]||0)+1;updateCard(id);updateBar(true);if(sheet&&sheet.type==='order')renderSheet()}
+  else if(a==='minus'){cart[id]--;if(cart[id]<=0)delete cart[id];updateCard(id);updateBar();if(sheet&&sheet.type==='order'){if(!count())sheet=null;renderSheet()}}
+  else if(a==='order')openSheet({type:'order'});
+  else if(a==='close'){sheet=null;renderSheet()}
+  else if(a==='when'){var v=t.getAttribute('data-v');form.when=form.when===v?'':v;saveForm();renderSheet()}
+  else if(a==='mail')sendMail();
+  else if(a==='sent'){setTimeout(function(){openSheet({type:'done'})},700)}
+  else if(a==='copy'){var txt=orderText();var ok=function(){toast('已複製，貼給主廚就好');setTimeout(function(){openSheet({type:'done'})},900)};(navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(ok,function(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok()}catch(e){toast('沒辦法自動複製')}ta.remove()})}
+  else if(a==='again'){cart={};form.when='';form.note='';saveForm();sheet=null;renderSheet();render();window.scrollTo(0,0)}
+  else if(a==='login')login();
+  else if(a==='new')openSheet({type:'edit',isNew:true,d:{id:'d'+Date.now().toString(36),sec:t.getAttribute('data-s'),name:'',desc:'',img:'',off:false}});
+  else if(a==='edit')openSheet({type:'edit',isNew:false,d:JSON.parse(JSON.stringify(byId(id)))});
+  else if(a==='pick'){sheet.d.sec=t.getAttribute('data-s');renderSheet()}
+  else if(a==='rmimg'){sheet.d.img='';renderSheet()}
+  else if(a==='keep'){var d=sheet.d;d.name=(d.name||'').trim();d.desc=(d.desc||'').trim();if(!d.name){toast('請填菜名');return}if(sheet.isNew)state.dishes.push(d);else state.dishes=state.dishes.map(function(x){return x.id===d.id?d:x});dirty=true;sheet=null;renderSheet();render()}
+  else if(a==='del'){if(!confirm('確定要刪除「'+sheet.d.name+'」嗎？'))return;var did=sheet.d.id;state.dishes=state.dishes.filter(function(x){return x.id!==did});dirty=true;sheet=null;renderSheet();render()}
+  else if(a==='settings')openSheet({type:'settings',s:{title:state.title,tagline:state.tagline,email:state.email||''}});
+  else if(a==='keepset'){var s=sheet.s;state.title=s.title.trim()||state.title;state.tagline=s.tagline.trim();state.email=s.email.trim();dirty=true;sheet=null;renderSheet();render()}
+  else if(a==='logout'){if(dirty&&!confirm('還有修改沒儲存，登出會放棄這些修改，確定嗎？'))return;setToken('');location.reload()}
+  else if(a==='save')save();
+  else if(a==='exit'){if(dirty){if(!confirm('還有修改沒儲存，離開會放棄這些修改，確定嗎？'))return;location.reload();return}edit=false;render()}
+});
+document.addEventListener('input',function(ev){
+  var el=ev.target,f=el.getAttribute('data-f'),e=el.getAttribute('data-e'),s=el.getAttribute('data-s'),tk=el.getAttribute('data-t');
+  if(f){form[f]=el.value;if(f==='when')document.querySelectorAll('.pill[data-act="when"]').forEach(function(p){p.classList.toggle('on',p.getAttribute('data-v')===el.value)});saveForm();lineLink()}
+  else if(tk&&sheet)sheet.token=el.value;
+  else if(e&&sheet&&sheet.d&&el.type!=='checkbox')sheet.d[e]=el.value;
+  else if(s&&sheet&&sheet.s)sheet.s[s]=el.value;
+});
+document.addEventListener('change',function(ev){
+  var el=ev.target;
+  if(el.getAttribute('data-e')==='off'&&sheet&&sheet.d)sheet.d.off=el.checked;
+  if(el.id==='e-img'&&el.files&&el.files[0]&&sheet&&sheet.d){
+    var u=document.getElementById('upl');if(u)u.style.opacity='.6';
+    readImage(el.files[0]).then(function(url){sheet.d.img=url;renderSheet()},function(){if(u)u.style.opacity='';toast('這張照片讀不到，換一張試試')});
+  }
+});
+document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&sheet){sheet=null;renderSheet()}});
+window.addEventListener('beforeunload',function(ev){if(edit&&dirty){ev.preventDefault();ev.returnValue=''}});
+
+fetch(MENU_PATH+'?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){
+  state=j;state.dishes=state.dishes||[];render();
+}).catch(function(){app.innerHTML='<p class="loading">菜單載入失敗，請重新整理再試一次。</p>'});
+})();
+</script>
+</body>
+</html>

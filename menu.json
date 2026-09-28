@@ -1,0 +1,15 @@
+{
+  "title": "霍華德餐館",
+  "tagline": "今天想吃什麼？挑好按送出，主廚馬上收到。",
+  "email": "howardinjones@gmail.com",
+  "dishes": [
+    {"id": "c1", "sec": "cold", "name": "涼拌小黃瓜", "desc": "蒜香微辣，清脆爽口", "img": "", "off": false},
+    {"id": "c2", "sec": "cold", "name": "皮蛋豆腐", "desc": "淋上醬油膏和肉鬆", "img": "", "off": false},
+    {"id": "v1", "sec": "veg", "name": "蒜炒高麗菜", "desc": "大火快炒，甜甜的", "img": "", "off": false},
+    {"id": "v2", "sec": "veg", "name": "蛤蜊絲瓜", "desc": "湯汁清甜可以拌飯", "img": "", "off": false},
+    {"id": "m1", "sec": "meat", "name": "三杯雞", "desc": "九層塔、麻油、米酒", "img": "", "off": false},
+    {"id": "m2", "sec": "meat", "name": "滷肉", "desc": "滷到入口即化", "img": "", "off": false},
+    {"id": "s1", "sec": "soup", "name": "玉米排骨湯", "desc": "慢燉兩小時", "img": "", "off": false},
+    {"id": "s2", "sec": "soup", "name": "番茄蛋花湯", "desc": "酸酸甜甜很開胃", "img": "", "off": false}
+  ]
+}
