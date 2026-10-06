@@ -15,7 +15,7 @@
       "id": "c2",
       "sec": "cold",
       "name": "日式涼拌小黃瓜",
-      "desc": "使用鹽昆布跟小蕃茄製作",
+      "desc": "使用鹽昆布跟小蕃茄醃製而成",
       "img": "",
       "off": false
     },
@@ -23,7 +23,7 @@
       "id": "v1",
       "sec": "veg",
       "name": "炒高麗菜",
-      "desc": "大火快炒，甜甜的",
+      "desc": "大火快炒，甜甜的 如果有豬油會更香",
       "img": "",
       "off": false
     },
@@ -46,7 +46,7 @@
     {
       "id": "m2",
       "sec": "meat",
-      "name": "滷肉",
+      "name": "黯然銷魂滷肉",
       "desc": "滷到入口即化",
       "img": "",
       "off": false
@@ -87,7 +87,71 @@
       "id": "dmum3s8wo",
       "sec": "cold",
       "name": "松柏常青",
-      "desc": "醃的大白菜絲",
+      "desc": "醃的大白菜絲 酸溜溜的",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3koet",
+      "sec": "veg",
+      "name": "蒜蓉菠菜",
+      "desc": "燙菠菜拌蒜蓉醬 簡單無負擔",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3m8w5",
+      "sec": "veg",
+      "name": "蘆筍炒蝦",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3ns8l",
+      "sec": "meat",
+      "name": "蔥蛋",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3ny7o",
+      "sec": "meat",
+      "name": "九層塔蛋",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3ochv",
+      "sec": "veg",
+      "name": "辣炒菜心",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3q722",
+      "sec": "meat",
+      "name": "牛肉麵（清燉／紅燒）",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3rbpv",
+      "sec": "meat",
+      "name": "大三滷",
+      "desc": "雞胗豆乾滷蛋",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3sen2",
+      "sec": "veg",
+      "name": "白菜滷",
+      "desc": "蛋酥 蝦皮 白菜",
       "img": "",
       "off": false
     }
