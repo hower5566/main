@@ -226,6 +226,70 @@
       "desc": "",
       "img": "",
       "off": false
+    },
+    {
+      "id": "dmuw4j6c3",
+      "sec": "soup",
+      "name": "鮭魚味增湯",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4jwql",
+      "sec": "veg",
+      "name": "炒茼蒿",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4s96l",
+      "sec": "meat",
+      "name": "鹹菜豬五花",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4sm2n",
+      "sec": "meat",
+      "name": "酸白菜炒牛肉",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4sx2j",
+      "sec": "veg",
+      "name": "大埔鐵板燒的豆芽菜",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4ti7f",
+      "sec": "soup",
+      "name": "蒜頭雞湯",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4tshm",
+      "sec": "soup",
+      "name": "酸筍排骨湯",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4u51p",
+      "sec": "soup",
+      "name": "香菇雞湯",
+      "desc": "",
+      "img": "",
+      "off": false
     }
   ]
 }
