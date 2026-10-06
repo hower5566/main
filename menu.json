@@ -154,6 +154,78 @@
       "desc": "蛋酥 蝦皮 白菜",
       "img": "",
       "off": false
+    },
+    {
+      "id": "dmuw3u1b4",
+      "sec": "meat",
+      "name": "鹹豬肉",
+      "desc": "台式鹹豬肉",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3ulvz",
+      "sec": "soup",
+      "name": "剝皮辣椒雞",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3uvse",
+      "sec": "meat",
+      "name": "氣炸雞腿",
+      "desc": "蒜味粉or韓式烤肉醬or台式醬油味",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3wcb2",
+      "sec": "meat",
+      "name": "紅酒燉牛肉",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3wjkm",
+      "sec": "meat",
+      "name": "咖哩雞or牛",
+      "desc": "紅蘿蔔 馬鈴薯",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3xnfi",
+      "sec": "meat",
+      "name": "蔥燒雞腿/豆腐",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3ze90",
+      "sec": "meat",
+      "name": "蒜香奶油鮭魚",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3zntp",
+      "sec": "meat",
+      "name": "泰式檸檬魚",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw400mz",
+      "sec": "meat",
+      "name": "氣炸鮭魚",
+      "desc": "",
+      "img": "",
+      "off": false
     }
   ]
 }
