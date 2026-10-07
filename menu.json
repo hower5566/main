@@ -3,13 +3,293 @@
   "tagline": "今天想吃什麼？挑好按送出，主廚馬上收到。",
   "email": "howardinjones@gmail.com",
   "dishes": [
-    {"id": "c1", "sec": "cold", "name": "涼拌小黃瓜", "desc": "蒜香微辣，清脆爽口", "img": "", "off": false},
-    {"id": "c2", "sec": "cold", "name": "皮蛋豆腐", "desc": "淋上醬油膏和肉鬆", "img": "", "off": false},
-    {"id": "v1", "sec": "veg", "name": "蒜炒高麗菜", "desc": "大火快炒，甜甜的", "img": "", "off": false},
-    {"id": "v2", "sec": "veg", "name": "蛤蜊絲瓜", "desc": "湯汁清甜可以拌飯", "img": "", "off": false},
-    {"id": "m1", "sec": "meat", "name": "三杯雞", "desc": "九層塔、麻油、米酒", "img": "", "off": false},
-    {"id": "m2", "sec": "meat", "name": "滷肉", "desc": "滷到入口即化", "img": "", "off": false},
-    {"id": "s1", "sec": "soup", "name": "玉米排骨湯", "desc": "慢燉兩小時", "img": "", "off": false},
-    {"id": "s2", "sec": "soup", "name": "番茄蛋花湯", "desc": "酸酸甜甜很開胃", "img": "", "off": false}
+    {
+      "id": "c1",
+      "sec": "cold",
+      "name": "川味涼拌小黃瓜",
+      "desc": "老乾媽加蒜香微辣，清脆爽口",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "c2",
+      "sec": "cold",
+      "name": "日式涼拌小黃瓜",
+      "desc": "使用鹽昆布跟小蕃茄醃製而成",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "v1",
+      "sec": "veg",
+      "name": "炒高麗菜",
+      "desc": "大火快炒，甜甜的 如果有豬油會更香",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "v2",
+      "sec": "veg",
+      "name": "清炒油菜",
+      "desc": "薑絲清炒 復刻經典便當菜色",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "m1",
+      "sec": "meat",
+      "name": "三杯雞",
+      "desc": "九層塔、麻油、米酒",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "m2",
+      "sec": "meat",
+      "name": "黯然銷魂滷肉",
+      "desc": "滷到入口即化",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "s1",
+      "sec": "soup",
+      "name": "玉米排骨湯",
+      "desc": "慢燉兩小時",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "s2",
+      "sec": "soup",
+      "name": "番茄蛋花湯",
+      "desc": "酸酸甜甜很開胃",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmum3q14t",
+      "sec": "cold",
+      "name": "韓式涼拌豆芽菜",
+      "desc": "香油 海帶 豆芽菜",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmum3rsmd",
+      "sec": "cold",
+      "name": "台式泡菜",
+      "desc": "就是台式泡菜",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmum3s8wo",
+      "sec": "cold",
+      "name": "松柏常青",
+      "desc": "醃的大白菜絲 酸溜溜的",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3koet",
+      "sec": "veg",
+      "name": "蒜蓉菠菜",
+      "desc": "燙菠菜拌蒜蓉醬 簡單無負擔",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3m8w5",
+      "sec": "veg",
+      "name": "蘆筍炒蝦",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3ns8l",
+      "sec": "meat",
+      "name": "蔥蛋",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3ny7o",
+      "sec": "meat",
+      "name": "九層塔蛋",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3ochv",
+      "sec": "veg",
+      "name": "辣炒菜心",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3q722",
+      "sec": "meat",
+      "name": "牛肉麵（清燉／紅燒）",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3rbpv",
+      "sec": "meat",
+      "name": "大三滷",
+      "desc": "雞胗豆乾滷蛋",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3sen2",
+      "sec": "veg",
+      "name": "白菜滷",
+      "desc": "蛋酥 蝦皮 白菜",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3u1b4",
+      "sec": "meat",
+      "name": "鹹豬肉",
+      "desc": "台式鹹豬肉",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3ulvz",
+      "sec": "soup",
+      "name": "剝皮辣椒雞",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3uvse",
+      "sec": "meat",
+      "name": "氣炸雞腿",
+      "desc": "蒜味粉or韓式烤肉醬or台式醬油味",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3wcb2",
+      "sec": "meat",
+      "name": "紅酒燉牛肉",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3wjkm",
+      "sec": "meat",
+      "name": "咖哩雞or牛",
+      "desc": "紅蘿蔔 馬鈴薯",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3xnfi",
+      "sec": "meat",
+      "name": "蔥燒雞腿/豆腐",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3ze90",
+      "sec": "meat",
+      "name": "蒜香奶油鮭魚",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw3zntp",
+      "sec": "meat",
+      "name": "泰式檸檬魚",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw400mz",
+      "sec": "meat",
+      "name": "氣炸鮭魚",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4j6c3",
+      "sec": "soup",
+      "name": "鮭魚味增湯",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4jwql",
+      "sec": "veg",
+      "name": "炒茼蒿",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4s96l",
+      "sec": "meat",
+      "name": "鹹菜豬五花",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4sm2n",
+      "sec": "meat",
+      "name": "酸白菜炒牛肉",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4sx2j",
+      "sec": "veg",
+      "name": "大埔鐵板燒的豆芽菜",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4ti7f",
+      "sec": "soup",
+      "name": "蒜頭雞湯",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4tshm",
+      "sec": "soup",
+      "name": "酸筍排骨湯",
+      "desc": "",
+      "img": "",
+      "off": false
+    },
+    {
+      "id": "dmuw4u51p",
+      "sec": "soup",
+      "name": "香菇雞湯",
+      "desc": "",
+      "img": "",
+      "off": false
+    }
   ]
 }
