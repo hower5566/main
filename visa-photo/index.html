@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>美簽照片裁切</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: a light-table — the photo with its square crop frame on the left, the finished 2×2 print and spec checklist on the right. */
+:root{
+  --bg:#EEF0F3; --panel:#FFFFFF; --ink:#141B2B; --muted:#5B6478; --line:#D5DAE3;
+  --navy:#1B2E5C; --stamp:#B3261E; --accent:#1B2E5C; --accent-ink:#FFFFFF;
+  --frame:#FFFFFF; --eye:rgba(46,170,96,.28); --eye-line:#2EAA60; --head:#FFD54A; --shade:rgba(10,14,24,.55);
+  --ok:#1F7A49; --ok-bg:#E2F3E9; --warn:#9A5B07; --warn-bg:#FCEFD9;
+  --f-display:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1320; --panel:#171E2E; --ink:#E7EBF3; --muted:#9AA4B8; --line:#2A3348;
+  --navy:#9DB4EA; --stamp:#F08A80; --accent:#8FAAF0; --accent-ink:#0B1020;
+  --ok:#7ED3A3; --ok-bg:#143022; --warn:#F2B866; --warn-bg:#36280F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1320; --panel:#171E2E; --ink:#E7EBF3; --muted:#9AA4B8; --line:#2A3348;
+  --navy:#9DB4EA; --stamp:#F08A80; --accent:#8FAAF0; --accent-ink:#0B1020;
+  --ok:#7ED3A3; --ok-bg:#143022; --warn:#F2B866; --warn-bg:#36280F; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.6;padding-inline:16px;padding-block:20px 48px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,4.2vw,36px);line-height:1.1;margin:0;color:var(--navy);text-wrap:balance}
+h1 .tag{display:inline-block;vertical-align:middle;margin-left:10px;font-family:var(--f-mono);font-size:13px;font-weight:500;letter-spacing:.08em;color:var(--stamp);border:1.5px solid var(--stamp);border-radius:4px;padding:1px 8px;transform:rotate(-3deg)}
+.sub{margin:6px 0 0;color:var(--muted)}
+button,select,input{font:inherit}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:10px;padding:11px 18px;font-weight:700;background:var(--accent);color:var(--accent-ink);cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:focus-visible,select:focus-visible,input:focus-visible,.box:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.label{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin:0}
+
+/* stage */
+.drop{position:relative;border:2px dashed var(--line);border-radius:12px;padding:10px;display:flex;justify-content:center;background:repeating-conic-gradient(var(--bg) 0 25%,var(--panel) 0 50%) 0 0/18px 18px}
+.drop.over{border-color:var(--accent)}
+.stage{position:relative;line-height:0;touch-action:none;user-select:none;-webkit-user-select:none;max-width:100%}
+.stage img{display:block;max-width:100%;max-height:70vh;width:auto;height:auto;pointer-events:none}
+.box{position:absolute;cursor:move;box-shadow:0 0 0 9999px var(--shade);outline:2px solid var(--frame);touch-action:none}
+.drop{overflow:hidden}
+.box svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.h{position:absolute;width:22px;height:22px;background:var(--frame);border:2px solid var(--navy);border-radius:50%;touch-action:none}
+.h.tl{left:-11px;top:-11px;cursor:nwse-resize}.h.tr{right:-11px;top:-11px;cursor:nesw-resize}
+.h.bl{left:-11px;bottom:-11px;cursor:nesw-resize}.h.br{right:-11px;bottom:-11px;cursor:nwse-resize}
+.tools{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.tools label{display:flex;align-items:center;gap:8px;color:var(--muted)}
+.tools input[type=range]{width:180px;max-width:50vw;accent-color:var(--accent)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:6px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+/* result */
+.print{display:flex;justify-content:center;padding:14px;background:var(--bg);border-radius:10px}
+.print canvas{width:200px;height:200px;max-width:100%;box-shadow:0 1px 0 var(--line),0 6px 18px rgba(0,0,0,.18);background:#fff}
+.ruler{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--ok-bg);color:var(--ok)}
+.chip.warn{background:var(--warn-bg);color:var(--warn)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+select{border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--panel);color:var(--ink)}
+ul.spec{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;color:var(--ink)}
+ul.spec b{font-weight:700}
+.note{font-size:12px;color:var(--muted);margin:0}
+#file{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>美簽照片裁切<span class="tag">2 × 2 in</span></h1>
+      <p class="sub">上傳照片，拖曳方框選位置，拉四個角改大小。照片只在你的瀏覽器裡處理，不會上傳。</p>
+    </div>
+    <div class="row">
+      <label class="btn" for="file">上傳照片</label>
+      <input id="file" type="file" accept="image/*">
+    </div>
+  </header>
+
+  <div class="grid">
+    <section class="panel">
+      <div class="drop" id="drop">
+        <div class="stage" id="stage">
+          <img id="img" alt="要裁切的照片">
+          <div class="box" id="box" tabindex="0" aria-label="裁切框，可用方向鍵移動，加減鍵縮放">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="0" y="31" width="100" height="13" fill="var(--eye)"/>
+              <line x1="0" y1="31" x2="100" y2="31" stroke="var(--eye-line)" stroke-width=".5" vector-effect="non-scaling-stroke"/>
+              <line x1="0" y1="44" x2="100" y2="44" stroke="var(--eye-line)" stroke-width=".5" vector-effect="non-scaling-stroke"/>
+              <line x1="50" y1="0" x2="50" y2="100" stroke="var(--frame)" stroke-width="1" stroke-dasharray="3 4" vector-effect="non-scaling-stroke" opacity=".7"/>
+              <ellipse cx="50" cy="39.5" rx="24" ry="34.5" fill="none" stroke="var(--head)" stroke-width="1.5" stroke-dasharray="6 4" vector-effect="non-scaling-stroke"/>
+              <ellipse cx="50" cy="38" rx="17.5" ry="25" fill="none" stroke="var(--head)" stroke-width="1.5" stroke-dasharray="2 4" vector-effect="non-scaling-stroke"/>
+            </svg>
+            <span class="h tl" data-c="tl"></span><span class="h tr" data-c="tr"></span>
+            <span class="h bl" data-c="bl"></span><span class="h br" data-c="br"></span>
+          </div>
+        </div>
+      </div>
+      <div class="tools">
+        <label for="size">框大小 <input id="size" type="range" min="10" max="100" step="0.5" value="70"></label>
+        <button class="btn ghost" id="center" type="button">置中</button>
+        <span class="mono" id="cropInfo" style="color:var(--muted)"></span>
+      </div>
+      <div class="legend">
+        <span><i style="background:var(--eye-line)"></i>眼睛要落在綠色帶（離頂部 31–44%）</span>
+        <span><i style="background:var(--head)"></i>頭頂到下巴介於內外兩個橢圓之間（50–69%）</span>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <p class="label">成品預覽</p>
+      <div class="print"><canvas id="preview" width="600" height="600"></canvas></div>
+      <div class="meta" id="meta"></div>
+      <div class="row">
+        <label for="res" style="color:var(--muted)">解析度</label>
+        <select id="res">
+          <option value="600">600 × 600 px（線上申請）</option>
+          <option value="1200">1200 × 1200 px</option>
+        </select>
+      </div>
+      <div class="row">
+        <button class="btn" id="dl" type="button">下載 JPG</button>
+        <button class="btn ghost" id="dlSheet" type="button">下載 4×6 沖印版</button>
+      </div>
+      <p class="note">沖印版是 4 × 6 英吋（300 dpi）放兩張 2 × 2，拿去照相館或超商印 4×6 再沿線剪下。</p>
+      <p class="label" style="margin-top:6px">美簽照片規格</p>
+      <ul class="spec">
+        <li><b>尺寸</b> 2 × 2 英吋（51 × 51 mm），正方形</li>
+        <li><b>數位檔</b> 600–1200 px 正方形、JPEG、240 KB 以下</li>
+        <li><b>頭部</b> 頭頂到下巴佔高度 50–69%（1–1⅜ 英吋）</li>
+        <li><b>眼睛</b> 離照片底部 56–69%（1⅛–1⅜ 英吋）</li>
+        <li><b>背景</b> 白色或米白、無陰影</li>
+        <li><b>其他</b> 正面、表情自然、雙眼張開、不戴眼鏡、6 個月內拍攝</li>
+      </ul>
+    </aside>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const img = $('img'), stage = $('stage'), box = $('box'), size = $('size');
+  const preview = $('preview'), pctx = preview.getContext('2d');
+  const MAX_BYTES = 240 * 1024;
+  let W = 0, H = 0, name = 'visa-photo';
+  let b = { x: 0, y: 0, s: 0 }; // crop box in source pixels
+
+  // Sample portrait so the tool shows what it does before an upload.
+  function sample() {
+    const c = document.createElement('canvas'); c.width = 900; c.height = 1200;
+    const g = c.getContext('2d');
+    g.fillStyle = '#F4F5F2'; g.fillRect(0, 0, 900, 1200);
+    g.fillStyle = '#2B3A55';
+    g.beginPath(); g.ellipse(450, 1180, 360, 300, 0, Math.PI, 0); g.fill();
+    g.fillStyle = '#D9B39A'; g.fillRect(395, 760, 110, 150);
+    g.beginPath(); g.ellipse(450, 560, 165, 215, 0, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#3A2A22';
+    g.beginPath(); g.ellipse(450, 430, 175, 120, 0, Math.PI, 0); g.fill();
+    g.fillStyle = '#2A2A2A';
+    g.beginPath(); g.ellipse(390, 545, 16, 10, 0, 0, Math.PI * 2); g.ellipse(510, 545, 16, 10, 0, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#5B6478'; g.font = '600 34px sans-serif'; g.textAlign = 'center';
+    g.fillText('範例照片：按「上傳照片」換成你的', 450, 90);
+    return c.toDataURL('image/png');
+  }
+
+  function load(src) {
+    img.onload = () => {
+      W = img.naturalWidth; H = img.naturalHeight;
+      const s = Math.min(W, H) * 0.7;
+      b = { x: (W - s) / 2, y: (H - s) / 2, s };
+      render();
+    };
+    img.src = src;
+  }
+
+  function clamp() {
+    const m = Math.min(W, H);
+    b.s = Math.max(m * 0.05, Math.min(b.s, m));
+    b.x = Math.max(0, Math.min(b.x, W - b.s));
+    b.y = Math.max(0, Math.min(b.y, H - b.s));
+  }
+
+  let raf = 0;
+  function render() {
+    clamp();
+    box.style.left = (b.x / W * 100) + '%';
+    box.style.top = (b.y / H * 100) + '%';
+    box.style.width = (b.s / W * 100) + '%';
+    box.style.height = (b.s / H * 100) + '%';
+    size.value = (b.s / Math.min(W, H) * 100).toFixed(1);
+    $('cropInfo').textContent = `裁切 ${Math.round(b.s)} × ${Math.round(b.s)} px`;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(drawPreview);
+  }
+
+  function drawCrop(ctx, px, dx = 0, dy = 0) {
+    ctx.fillStyle = '#fff'; ctx.fillRect(dx, dy, px, px);
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(img, b.x, b.y, b.s, b.s, dx, dy, px, px);
+  }
+
+  function drawPreview() {
+    drawCrop(pctx, 600);
+    const res = +$('res').value;
+    const chips = [];
+    chips.push(b.s >= res ? `<span class="chip">原圖解析度足夠</span>`
+      : `<span class="chip warn">原圖只有 ${Math.round(b.s)} px，放大到 ${res} 會較模糊</span>`);
+    $('meta').innerHTML = chips.join('');
+  }
+
+  // JPEG under 240 KB: step quality down until it fits.
+  async function toJpeg(canvas, limit) {
+    let blob;
+    for (let q = 0.95; q >= 0.4; q -= 0.05) {
+      blob = await new Promise(r => canvas.toBlob(r, 'image/jpeg', q));
+      if (!limit || blob.size <= limit) break;
+    }
+    return blob;
+  }
+
+  function save(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+  }
+
+  $('dl').onclick = async () => {
+    const res = +$('res').value;
+    const c = document.createElement('canvas'); c.width = c.height = res;
+    drawCrop(c.getContext('2d'), res);
+    const blob = await toJpeg(c, MAX_BYTES);
+    save(blob, `${name}-${res}.jpg`);
+    $('meta').insertAdjacentHTML('beforeend', `<span class="chip">已下載 ${res}×${res}，${Math.round(blob.size / 1024)} KB</span>`);
+  };
+
+  $('dlSheet').onclick = async () => {
+    const c = document.createElement('canvas'); c.width = 1800; c.height = 1200; // 6×4 in @ 300 dpi
+    const g = c.getContext('2d');
+    g.fillStyle = '#fff'; g.fillRect(0, 0, 1800, 1200);
+    const y = 300;
+    [[250, y], [950, y]].forEach(([x, yy]) => {
+      drawCrop(g, 600, x, yy);
+      g.strokeStyle = '#BBBBBB'; g.lineWidth = 2; g.setLineDash([12, 10]);
+      g.strokeRect(x - 1, yy - 1, 602, 602);
+    });
+    g.setLineDash([]); g.fillStyle = '#999'; g.font = '28px sans-serif'; g.textAlign = 'center';
+    g.fillText('2 × 2 in（51 × 51 mm）· 沿虛線剪下 · 請用 4×6 吋、100% 原尺寸沖印', 900, 1000);
+    save(await toJpeg(c, 0), `${name}-4x6.jpg`);
+  };
+
+  // Dragging and corner resizing
+  let drag = null;
+  const scale = () => W / stage.getBoundingClientRect().width;
+  box.addEventListener('pointerdown', e => {
+    e.preventDefault();
+    const c = e.target.dataset.c;
+    box.setPointerCapture(e.pointerId);
+    drag = { c, px: e.clientX, py: e.clientY, start: { ...b } };
+    if (c) {
+      const sx = c.includes('r') ? 1 : -1, sy = c.includes('b') ? 1 : -1;
+      drag.sx = sx; drag.sy = sy;
+      drag.ax = sx > 0 ? b.x : b.x + b.s;   // opposite corner stays put
+      drag.ay = sy > 0 ? b.y : b.y + b.s;
+    }
+  });
+  box.addEventListener('pointermove', e => {
+    if (!drag) return;
+    const k = scale(), dx = (e.clientX - drag.px) * k, dy = (e.clientY - drag.py) * k;
+    if (!drag.c) {
+      b.x = drag.start.x + dx; b.y = drag.start.y + dy;
+    } else {
+      const { sx, sy, ax, ay, start } = drag;
+      const cx = (sx > 0 ? start.x + start.s : start.x) + dx;
+      const cy = (sy > 0 ? start.y + start.s : start.y) + dy;
+      let s = Math.max((cx - ax) * sx, (cy - ay) * sy);
+      const room = Math.min(sx > 0 ? W - ax : ax, sy > 0 ? H - ay : ay);
+      s = Math.max(Math.min(W, H) * 0.05, Math.min(s, room));
+      b.s = s;
+      b.x = sx > 0 ? ax : ax - s;
+      b.y = sy > 0 ? ay : ay - s;
+    }
+    render();
+  });
+  const end = () => { drag = null; };
+  box.addEventListener('pointerup', end);
+  box.addEventListener('pointercancel', end);
+
+  function resizeAroundCenter(s) {
+    const cx = b.x + b.s / 2, cy = b.y + b.s / 2;
+    b.s = Math.max(Math.min(W, H) * 0.05, Math.min(s, Math.min(W, H)));
+    b.x = cx - b.s / 2; b.y = cy - b.s / 2;
+    render();
+  }
+  size.addEventListener('input', () => resizeAroundCenter(size.value / 100 * Math.min(W, H)));
+  stage.addEventListener('wheel', e => {
+    e.preventDefault();
+    resizeAroundCenter(b.s * (e.deltaY > 0 ? 1.04 : 1 / 1.04));
+  }, { passive: false });
+  box.addEventListener('keydown', e => {
+    const step = (e.shiftKey ? 20 : 4) * scale();
+    const moves = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] };
+    if (moves[e.key]) { b.x += moves[e.key][0]; b.y += moves[e.key][1]; render(); e.preventDefault(); }
+    else if (e.key === '+' || e.key === '=') { resizeAroundCenter(b.s * 1.03); e.preventDefault(); }
+    else if (e.key === '-') { resizeAroundCenter(b.s / 1.03); e.preventDefault(); }
+  });
+  $('center').onclick = () => { b.x = (W - b.s) / 2; b.y = (H - b.s) / 2; render(); };
+  $('res').onchange = render;
+
+  // Upload: file picker, drag-and-drop, or paste
+  function useFile(f) {
+    if (!f || !f.type.startsWith('image/')) return;
+    name = (f.name.replace(/\.[^.]+$/, '') || 'visa-photo') + '-visa';
+    const r = new FileReader();
+    r.onload = () => load(r.result);
+    r.readAsDataURL(f);
+  }
+  $('file').onchange = e => useFile(e.target.files[0]);
+  const drop = $('drop');
+  ['dragenter', 'dragover'].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.add('over'); }));
+  ['dragleave', 'drop'].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.remove('over'); }));
+  drop.addEventListener('drop', e => useFile(e.dataTransfer.files[0]));
+  document.addEventListener('paste', e => {
+    const item = [...(e.clipboardData?.items || [])].find(i => i.type.startsWith('image/'));
+    if (item) useFile(item.getAsFile());
+  });
+
+  load(sample());
+})();
+</script>
+</body>
+</html>
